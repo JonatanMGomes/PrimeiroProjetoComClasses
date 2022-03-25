@@ -8,7 +8,8 @@ namespace PrimeiroProjetoComClasses{
             Usuario.Email = Usuario.PedeEmail();
             CarrinhoCompras Carrinho = new CarrinhoCompras(Usuario);
             Carrinho.IniciarCompras();*/
-            var numeros = new List<int>();
+            
+            /*var numeros = new List<int>();
             var numerosMaisDez = new List<int>();
             var strings = new List<string>();
             for(var contador = 0; contador < 10; contador++){
@@ -38,7 +39,20 @@ namespace PrimeiroProjetoComClasses{
             var textoComMaisDeCincoLetras = strings.All(numero => strings.Count > 5);
             //ordenação
             var ordenacaoDescrescente = numeros.OrderByDescending(x => x);
-            var ordenacaoCrescente = numeros.OrderBy(x => x);
+            var ordenacaoCrescente = numeros.OrderBy(x => x);*/
+
+            //DateTime
+            var dataEHoraAtual = DateTime.Now;
+            var dataEHoraMaisUmDia = DateTime.Now.AddDays(1);
+            var dataEHoraMenosUmMes = DateTime.Now.AddMonths(-1);
+            Console.WriteLine("Insura sua data em mes/dia/ano");
+            var dataDeNascimento = DateTime.Parse(Console.ReadLine());
+            var dateTimeEmString = dataDeNascimento.ToString("dd/MM/yyyy hh:mm:ss");
+            //TimeSpan
+            var diferenca = dataEHoraAtual.Subtract(dataEHoraMenosUmMes);
+            Console.WriteLine(diferenca.Days);
+            Console.WriteLine($"Você nasceu no dia: {dataDeNascimento.Day} do mês: {dataDeNascimento.Month} e era {dataDeNascimento.DayOfWeek}");
+            Console.WriteLine("Finalizou");
          }
      }
 }
