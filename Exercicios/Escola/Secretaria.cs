@@ -2,24 +2,33 @@ namespace PrimeiroProjetoComClasses.Exercicios.Escola
 {
     public class Secretaria
     {
-        public void CadastrarNovasTurmas()
+        public List<SalaDeAula> CadastrarNovasTurmas()
         {
             var salasDeAula = new List<SalaDeAula>();
-            var opcaoContinuar = 0;
+            string opcaoContinuar;
             do
             {
                 Console.WriteLine("Deseja adicionar uma nova sala de aula? 1-Sim | 2-Não");
-                opcaoContinuar = int.Parse(Console.ReadLine());
-                if (opcaoContinuar == 1)
+                opcaoContinuar = Console.ReadLine();
+                if (opcaoContinuar == "1")
                 {
-                    Console.WriteLine("Qual o nome do professor?");
-                    var nomeDoProfessor = Console.ReadLine();
                     Console.WriteLine("Qual a serie?");
                     var serie = Console.ReadLine();
+                    var professores = CadastrarProfessoresDaTurma();
                     var alunos = CadastrarPrimeirosAlunosDaTurma();
-                    salasDeAula.Add(new SalaDeAula(serie, alunos, nomeDoProfessor));
+                    salasDeAula.Add(new SalaDeAula(serie, alunos, professores));
+                    Console.WriteLine("Sala de Aula adicionada com sucesso!");
                 }
-            } while (opcaoContinuar != 2);
+                else if (opcaoContinuar == "2")
+                {
+                    Console.WriteLine("Operação finalizada com sucesso!");
+                }
+                else
+                {
+                    Console.WriteLine("Opção inválida!");
+                }
+            } while (opcaoContinuar != "2");
+            return salasDeAula;
         }
         private Aluno CadastrarNovoAluno()
         {
@@ -31,17 +40,63 @@ namespace PrimeiroProjetoComClasses.Exercicios.Escola
             var dataDeNascimento = DateTime.Parse(Console.ReadLine());
             return new Aluno(nomeDoAluno, dataDeNascimento, cpf);
         }
+        private Professor CadastrarNovoProfessor()
+        {
+            Console.WriteLine("Qual nome do professor?");
+            var nomeDoAluno = Console.ReadLine();
+            Console.WriteLine("Qual CPF do professor?");
+            var cpf = Console.ReadLine();
+            Console.WriteLine("Qual data de nascimento do professor?");
+            var dataDeNascimento = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Qual disciplina leciona?");
+            var disciplina = Console.ReadLine();
+            return new Professor(nomeDoAluno, dataDeNascimento, cpf, disciplina);
+        }
         private List<Aluno> CadastrarPrimeirosAlunosDaTurma()
         {
-            var continuarAdicionando = 0;
-            Console.WriteLine("Deseja adicionar novos alunos? 1-Sim | 2-Não");
-            continuarAdicionando = int.Parse(Console.ReadLine());
+            string continuarAdicionando;
             var primeirosAlunos = new List<Aluno>();
-            while (continuarAdicionando == 1)
+            do
             {
-                primeirosAlunos.Add(CadastrarNovoAluno());
-            }
+                Console.WriteLine("Deseja adicionar novo aluno? 1-Sim | 2-Não");
+                continuarAdicionando = Console.ReadLine();
+                switch (continuarAdicionando)
+                {
+                    case "1":
+                        primeirosAlunos.Add(CadastrarNovoAluno());
+                        break;
+                    case "2":
+                        Console.WriteLine("Cadastramento finalizado!");
+                        break;
+                    default:
+                        Console.WriteLine("Opção inválida!");
+                        break;
+                }
+            } while (continuarAdicionando != "2");
             return primeirosAlunos;
+        }
+        private List<Professor> CadastrarProfessoresDaTurma()
+        {
+            string continuarAdicionando;
+            var professoresDaTurma = new List<Professor>();
+            do
+            {
+                Console.WriteLine("Deseja adicionar novo professor? 1-Sim | 2-Não");
+                continuarAdicionando = Console.ReadLine();
+                switch (continuarAdicionando)
+                {
+                    case "1":
+                        professoresDaTurma.Add(CadastrarNovoProfessor());
+                        break;
+                    case "2":
+                        Console.WriteLine("Cadastramento finalizado!");
+                        break;
+                    default:
+                        Console.WriteLine("Opção inválida!");
+                        break;
+                }
+            } while (continuarAdicionando != "2");
+            return professoresDaTurma;
         }
     }
 }

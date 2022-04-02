@@ -6,7 +6,7 @@ namespace PrimeiroProjetoComClasses
         static void Main(string[] args)
         {
          var secretaria = new Secretaria();
-         secretaria.CadastrarNovasTurmas();
+         var salasDeAula = secretaria.CadastrarNovasTurmas();
         }
         public static void ExerciciosDateTimeTimeSpan(){
           //DateTime
