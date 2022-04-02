@@ -9,14 +9,8 @@ namespace PrimeiroProjetoComClasses.Exercicios.Escola{
             Serie = serie;
             Alunos = listaDeAlunosInicial;
         }
-        public void AdicionarAluno(Aluno aluno){
-            Alunos.Add(aluno);
-        }
         public void RemoverAluno(string cpf){
             Alunos.RemoveAll(aluno => aluno.CPF == cpf);
-        }
-        public void AdicionarProfessor(Professor professor){
-            Professores.Add(professor);
         }
         public void RemoverProfessor(string cpf){
             Professores.RemoveAll(professor => professor.CPF == cpf);
